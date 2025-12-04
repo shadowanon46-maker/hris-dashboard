@@ -1,11 +1,11 @@
-    @import "tailwindcss";
+@import "tailwindcss";
 
-    /* Custom styles atau override theme bisa disini */
-    @theme {
-      --font-sans: "Inter", sans-serif;
-    }
+/* Custom styles atau override theme bisa disini */
+@theme {
+  --font-sans: "Inter", sans-serif;
+}
 
-    /* Reset dasar Next.js (opsional tapi bagus) */
-    body {
-      font-family: var(--font-sans);
-    }
+/* Reset dasar Next.js (opsional tapi bagus) */
+body {
+  font-family: var(--font-sans);
+}
