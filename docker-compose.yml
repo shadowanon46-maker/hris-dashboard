@@ -1,0 +1,21 @@
+services:
+  # Nama service database kita
+  db:
+    image: postgres:16-alpine
+    container_name: hris_postgres
+    # Restart otomatis jika error atau komputer nyala ulang
+    restart: always
+    # Settingan username/password database (JANGAN DIPAKAI DI PRODUCTION)
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: hris_db
+    # Mapping port: Port 5432 komputer -> Port 5432 container
+    ports:
+      - "5432:5432"
+    # Volume: Agar data tidak hilang saat container dimatikan
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
