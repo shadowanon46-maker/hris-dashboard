@@ -1,11 +1,25 @@
 'use client';
 
-import { useActionState } from 'react'; // Hook baru React untuk form actions
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { login } from '@/actions/auth';
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition font-medium disabled:bg-blue-400"
+    >
+      {pending ? 'Memproses...' : 'Masuk Dashboard'}
+    </button>
+  );
+}
+
 export default function LoginPage() {
-  // useActionState menangani state loading & error dari Server Action
-  const [state, formAction, isPending] = useActionState(login, null);
+  const [state, formAction] = useActionState(login, null);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-100">
@@ -45,13 +59,7 @@ export default function LoginPage() {
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={isPending}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition font-medium disabled:bg-blue-400"
-          >
-            {isPending ? 'Memproses...' : 'Masuk Dashboard'}
-          </button>
+          <SubmitButton />
         </form>
       </div>
     </div>
